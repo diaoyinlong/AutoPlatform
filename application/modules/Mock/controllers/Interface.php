@@ -26,8 +26,12 @@ class InterfaceController extends Yaf\Controller_Abstract
 
     public function blockAction()
     {
-        $data = $this->_request->getPost('jsonStr');
-        $result = is_null($data) ? 'FAILED' : 'SUCCESS';
-        echo $result;
+        $data1 = $this->_request->getPost('jsonStr');
+        $data2 = $this->_request->getPost('json');
+        if ($data1 || $data2) {
+            echo 'SUCCESS';
+        } else {
+            echo 'FAILED';
+        }
     }
 }
