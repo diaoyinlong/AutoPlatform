@@ -7,10 +7,10 @@ class MySql
 
     public function __construct()
     {
-        $conf = Yaf\Registry::get('config')->toArray()['mock'];
+        $conf = Yaf\Registry::get('config')->toArray()['auto'];
         $host = $conf['host'];
         $name = $conf['name'];
-        $this->db = new PDO("mysql:host=$host;dbname=$name", $conf['user'], $conf['pass']);
+        $this->db = new PDO("mysql:host=$host;dbname=$name", $conf['user'], $conf['pwd']);
     }
 
     public function query($sql, $fetchAll = true)
