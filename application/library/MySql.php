@@ -32,7 +32,7 @@ class MySql
         $value = '';
 
         foreach ($dict as $k => $v) {
-            $field .= $k . ',';
+            $field .= "`" . $k . "`" . ',';
             $value .= $v . ',';
         }
 
@@ -50,7 +50,7 @@ class MySql
     {
         $modify = '';
         foreach ($dict as $k => $v) {
-            $modify .= $k . '=' . $v . ',';
+            $modify .= "`" . $k . "`" . '=' . $v . ',';
         }
         $modify = rtrim($modify, ',');
         $sql = "UPDATE $table SET $modify WHERE $condition";

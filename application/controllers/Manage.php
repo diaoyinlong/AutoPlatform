@@ -15,19 +15,37 @@ class ManageController extends Yaf\Controller_Abstract
     {
         $id = $this->_request->getPost('id');
         $project = $this->_request->getPost('project');
+        $path = $this->_request->getPost('path');
 
         $model = new ManageApiModel();
 
         $condition = '';
-        if ($id == '' && $project == '') {
-            $condition = '';
-        } else {
-            $condition .= $id != '' ? " AND id=$id" : '';
-            $condition .= $project != '' ? " AND project='$project'" : '';
-        }
+        $condition .= $id != '' ? " AND id=$id" : '';
+        $condition .= $project != '' ? " AND project='$project'" : '';
+        $condition .= $path != '' ? " AND path='$path'" : '';
+
 
         $result = $model->queryApiInfo($condition);
         echo json_encode($result);
+        exit;
+    }
+
+    public function addApiInfoAction()
+    {
+        $data = $this->_request->getPost('data');
+        $model = new ManageApiModel();
+        echo $model->addApiInfo($data);
+        exit;
+    }
+
+    public function updateApiInfoAction()
+    {
+        exit;
+    }
+
+    public function deleteApiInfoAction()
+    {
+        $id = $this->_request->getPost('id');
         exit;
     }
 }
