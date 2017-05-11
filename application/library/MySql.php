@@ -58,8 +58,10 @@ class MySql
         return $stmt->execute();
     }
 
-    public function delete($sql)
+    public function delete($condition, $table)
     {
-
+        $sql = "DELETE FROM $table WHERE $condition";
+        $stmt = $this->db->prepare($sql);
+        return $stmt->execute();
     }
 }

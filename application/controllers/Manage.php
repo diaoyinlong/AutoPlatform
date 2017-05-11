@@ -34,7 +34,11 @@ class ManageController extends Yaf\Controller_Abstract
     {
         $data = $this->_request->getPost('data');
         $model = new ManageApiModel();
-        echo $model->addApiInfo($data);
+        if ($model->addApiInfo($data)) {
+            echo 'SUCCESS';
+        } else {
+            echo 'FAILED';
+        }
         exit;
     }
 
@@ -46,6 +50,8 @@ class ManageController extends Yaf\Controller_Abstract
     public function deleteApiInfoAction()
     {
         $id = $this->_request->getPost('id');
+        $model = new ManageApiModel();
+        echo $model->deleteApiInfoById($id);
         exit;
     }
 }

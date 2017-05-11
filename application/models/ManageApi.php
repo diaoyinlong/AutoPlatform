@@ -3,18 +3,26 @@
 class ManageApiModel
 {
     const apiInfoTable = 'apiInfo';
+    private $db;
+
+    public function __construct()
+    {
+        $this->db = new MySql();
+    }
 
     public function queryApiInfo($condition = '')
     {
-        $db = new MySql();
-
         $sql = "SELECT * FROM " . self::apiInfoTable . " WHERE 1=1 $condition ORDER BY id DESC";
-        return $db->query($sql);
+        return $this->db->query($sql);
     }
 
     public function addApiInfo($dataArr)
     {
-        $db = new MySql();
-        return $db->add($dataArr, self::apiInfoTable);
+        return $this->db->add($dataArr, self::apiInfoTable);
+    }
+
+    public function deleteApiInfoById($id)
+    {
+        return $this->db->delete("id=$id", self::apiInfoTable);
     }
 }
